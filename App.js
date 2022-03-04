@@ -16,12 +16,6 @@ const SignUp = () => {
   const [passwordAsterix, setPasswordAsterix] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
 
-  /*
-  React.useEffect(() => {
-    //console.log("email", email);
-  }, [email])
-  */
-
   React.useEffect(() => {
     let prevPass = password;
     let newPass = prevPass.replace(/./g, "*");
@@ -50,6 +44,10 @@ const SignUp = () => {
     setPassword(temp);
   }
 
+  const login = () => {
+    console.log("login()");
+  }
+
   return (
     <SafeAreaView>
       <Text style={{padding: 20, fontWeight: 'bold', color: 'black'}}>SIGN UP</Text>
@@ -72,10 +70,31 @@ const SignUp = () => {
           <MaterialCommunityIcons name={"eye-off"} size={20}/>
         </TouchableOpacity>
       </View>
-
       <TouchableOpacity style={styles.signUpButton} onPress={() => {signUp()}}>
         <Text style={styles.signUpButtonText}>SIGN UP</Text>
       </TouchableOpacity>
+
+      <View style={{flexDirection: 'row', marginHorizontal: 20}}>
+        <View style={{flex: 1, borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 15}}/>
+        <View style={{borderWidth: 1, borderRadius: 5}}>
+          <Text style={{alignSelf: 'center', padding: 5}}>OR</Text>
+        </View>
+        <View style={{flex: 1, borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 15}}/>
+      </View>
+
+      <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
+        <MaterialCommunityIcons name={"google"} size={25} style={{padding: 5}} color={"red"}/>
+        <MaterialCommunityIcons name={"facebook"} size={25} style={{padding: 5}} color={"blue"}/>
+        <MaterialCommunityIcons name={"linkedin"} size={25} style={{padding: 5}}color={"blue"}/>
+      </View>
+
+      <View style={{flexDirection: 'row', justifyContent: 'center', padding: 10}}>
+        <Text>Already a user?</Text>
+        <TouchableOpacity onPress={() => login()}>
+          <Text style={{borderBottomWidth: 1, marginLeft: 5}}>LOGIN</Text>
+        </TouchableOpacity>
+      </View>
+
     </SafeAreaView>
   )
 }
