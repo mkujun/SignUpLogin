@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, SafeAreaView, StyleSheet, Text, TextInput } from 'react-native';
-
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const App = () => {
   return (
@@ -71,6 +71,7 @@ const SignUp = () => {
       <TouchableOpacity style={styles.signUpButton} onPress={() => {signUp()}}>
         <Text style={styles.signUpButtonText}>SIGN UP</Text>
       </TouchableOpacity>
+      <MaterialCommunityIcons name={"home"} size={20} style={{paddingVertical: 15}}/>
     </SafeAreaView>
   )
 }
