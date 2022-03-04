@@ -50,14 +50,14 @@ const SignUp = () => {
 
   return (
     <SafeAreaView>
-      <Text style={{padding: 20, fontWeight: 'bold', color: 'black'}}>SIGN UP</Text>
-      <Text style={{padding: 20}}>Email</Text>
+      <Text style={{padding: 20, marginBottom: 10, fontSize: 18, fontWeight: 'bold', color: 'black'}}>SIGN UP</Text>
+      <Text style={{paddingHorizontal: 20, marginBottom: 5}}>Email</Text>
       <TextInput
         style={styles.emailInput}
         onChangeText={setEmail}
         value={email}
       />
-      <Text style={{padding: 20}}>Password</Text>
+      <Text style={{paddingHorizontal: 20, marginBottom: 5, marginTop: 20}}>Password</Text>
       <View style={styles.passwordInputRow}>
         <TextInput
           style={styles.passwordInput}
@@ -101,27 +101,28 @@ const SignUp = () => {
 
 const styles = StyleSheet.create({
   emailInput: {
-    padding: 20,
+    paddingHorizontal: 15,
     borderRadius: 10,
     borderColor: 'gray',
     borderWidth: 1,
     marginHorizontal: 20
   },
   signUpButton: {
-    padding: 20,
+    padding: 10,
     margin: 20,
     borderRadius: 10,
-    borderColor: 'red',
+    borderColor: '#ee5684',
     borderWidth: 1,
-    backgroundColor: 'red'
+    backgroundColor: '#ee5684'
   },
   signUpButtonText: {
     alignSelf: 'center',
     color: 'white',
+    fontSize: 16,
     fontWeight: 'bold'
   },
   passwordInput: {
-    padding: 20,
+    paddingHorizontal: 15,
     flex: 1
   },
   passwordInputRow: {
