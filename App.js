@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, SafeAreaView, StyleSheet, Text, TextInput } from 'react-native';
+import { View, TouchableOpacity, SafeAreaView, StyleSheet, Text, TextInput } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const App = () => {
@@ -35,7 +35,6 @@ const SignUp = () => {
 
   const signUp = () => {
     console.log("signUp()");
-    setShowPassword(!showPassword);
   }
 
   const changePass = ({nativeEvent: {key: keyValue}}) => {
@@ -56,28 +55,33 @@ const SignUp = () => {
       <Text style={{padding: 20, fontWeight: 'bold', color: 'black'}}>SIGN UP</Text>
       <Text style={{padding: 20}}>Email</Text>
       <TextInput
-        style={styles.textInput}
+        style={styles.emailInput}
         onChangeText={setEmail}
         value={email}
       />
       <Text style={{padding: 20}}>Password</Text>
-      <TextInput
-        style={styles.textInput}
-        autoCorrect={false}
-        value={password}
-        onKeyPress={changePass}
-        value={showPassword ? password : passwordAsterix}
-      />
+      <View style={styles.passwordInputRow}>
+        <TextInput
+          style={styles.passwordInput}
+          autoCorrect={false}
+          value={password}
+          onKeyPress={changePass}
+          value={showPassword ? password : passwordAsterix}
+        />
+        <TouchableOpacity style={{alignSelf: 'center', padding:10}} onPress={() => { setShowPassword(!showPassword)}}>
+          <MaterialCommunityIcons name={"eye-off"} size={20}/>
+        </TouchableOpacity>
+      </View>
+
       <TouchableOpacity style={styles.signUpButton} onPress={() => {signUp()}}>
         <Text style={styles.signUpButtonText}>SIGN UP</Text>
       </TouchableOpacity>
-      <MaterialCommunityIcons name={"home"} size={20} style={{paddingVertical: 15}}/>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-  textInput: {
+  emailInput: {
     padding: 20,
     borderRadius: 10,
     borderColor: 'gray',
@@ -96,6 +100,18 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: 'white',
     fontWeight: 'bold'
+  },
+  passwordInput: {
+    padding: 20,
+    flex: 1
+  },
+  passwordInputRow: {
+    flexDirection: 'row',
+    borderColor: 'gray',
+    marginHorizontal: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    justifyContent: 'space-around'
   }
 });
 
