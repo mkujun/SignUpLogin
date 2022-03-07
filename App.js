@@ -99,6 +99,7 @@ const Login = ({navigation}) => {
         changePass={changePass}
       />
       <PinkButton buttonAction={login} title={"LOGIN"}/>
+      <SocialMedia />
     </View>
     </>
   )
@@ -109,6 +110,25 @@ const PinkButton = ({buttonAction, title}) => {
     <TouchableOpacity style={styles.signUpButton} onPress={buttonAction}>
       <Text style={styles.signUpButtonText}>{title}</Text>
     </TouchableOpacity>
+  )
+}
+
+const SocialMedia = () => {
+  return (
+    <>
+    <View style={{flexDirection: 'row', marginHorizontal: 20}}>
+      <View style={{flex: 1, borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 15}}/>
+      <View style={{borderWidth: 1, borderRadius: 5}}>
+        <Text style={{alignSelf: 'center', padding: 5}}>OR</Text>
+      </View>
+      <View style={{flex: 1, borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 15}}/>
+    </View>
+    <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
+      <MaterialCommunityIcons name={"google"} size={25} style={{padding: 5}} color={"red"}/>
+      <MaterialCommunityIcons name={"facebook"} size={25} style={{padding: 5}} color={"blue"}/>
+      <MaterialCommunityIcons name={"linkedin"} size={25} style={{padding: 5}}color={"blue"}/>
+    </View>
+    </>
   )
 }
 
@@ -168,19 +188,7 @@ const SignUp = ({navigation}) => {
       />
       <PinkButton buttonAction={signUp} title={"SIGN UP"}/>
 
-      <View style={{flexDirection: 'row', marginHorizontal: 20}}>
-        <View style={{flex: 1, borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 15}}/>
-        <View style={{borderWidth: 1, borderRadius: 5}}>
-          <Text style={{alignSelf: 'center', padding: 5}}>OR</Text>
-        </View>
-        <View style={{flex: 1, borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 15}}/>
-      </View>
-
-      <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 10}}>
-        <MaterialCommunityIcons name={"google"} size={25} style={{padding: 5}} color={"red"}/>
-        <MaterialCommunityIcons name={"facebook"} size={25} style={{padding: 5}} color={"blue"}/>
-        <MaterialCommunityIcons name={"linkedin"} size={25} style={{padding: 5}}color={"blue"}/>
-      </View>
+      <SocialMedia />
 
       <View style={{flexDirection: 'row', justifyContent: 'center', padding: 10}}>
         <Text>Already a user?</Text>
