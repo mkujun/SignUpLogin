@@ -84,19 +84,31 @@ const Login = ({navigation}) => {
     setPassword(temp);
   }
 
+  const login = () => {
+    console.log("login()");
+  }
+
   return (
+    <>
+    <Text style={{padding: 20, marginBottom: 10, fontSize: 18, fontWeight: 'bold', color: 'black'}}>LOGIN</Text>
     <View style={{flex: 1}}>
-      <TouchableOpacity onPress={() => {navigation.pop()}}>
-        <Text>go back</Text>
-      </TouchableOpacity>
-      <Text>Login screen</Text>
       <Email email={email} setEmail={setEmail}/>
       <Password password={password} setPassword={setPassword}
         passwordAsterix={passwordAsterix} setPasswordAsterix={setPasswordAsterix}
         showPassword={showPassword} setShowPassword={setShowPassword}
         changePass={changePass}
       />
+      <PinkButton buttonAction={login} title={"LOGIN"}/>
     </View>
+    </>
+  )
+}
+
+const PinkButton = ({buttonAction, title}) => {
+  return (
+    <TouchableOpacity style={styles.signUpButton} onPress={buttonAction}>
+      <Text style={styles.signUpButtonText}>{title}</Text>
+    </TouchableOpacity>
   )
 }
 
@@ -154,9 +166,7 @@ const SignUp = ({navigation}) => {
         showPassword={showPassword} setShowPassword={setShowPassword}
         changePass={changePass}
       />
-      <TouchableOpacity style={styles.signUpButton} onPress={() => {signUp()}}>
-        <Text style={styles.signUpButtonText}>SIGN UP</Text>
-      </TouchableOpacity>
+      <PinkButton buttonAction={signUp} title={"SIGN UP"}/>
 
       <View style={{flexDirection: 'row', marginHorizontal: 20}}>
         <View style={{flex: 1, borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 15}}/>
