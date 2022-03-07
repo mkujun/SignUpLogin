@@ -22,10 +22,10 @@ const signUpValidation = (input) => {
   const re = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/g);
 
   if (re.test(input)) {
-    console.log("prosla validacija");
+    return true;
   }
   else {
-    console.log("regex nije dobar");
+    return false;
   }
 }
 
@@ -85,23 +85,20 @@ const RememberMe = () => {
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = React.useState("");
-  const [passwordAsterix, setPasswordAsterix] = React.useState("");
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordAsterix, setPasswordAsterix] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     let prevPass = password;
     let newPass = prevPass.replace(/./g, "*");
     setPasswordAsterix(newPass);
-    console.log("SignUP password", password);
   }, [password])
 
   useEffect(() => {
-    console.log("login email change", email);
   }, [email])
 
   useEffect(() => {
-    console.log("login password change", password);
   }, [password])
 
   const changePass = ({nativeEvent: {key: keyValue}}) => {
@@ -118,7 +115,6 @@ const Login = ({navigation}) => {
   }
 
   const login = () => {
-    console.log("login()");
   }
 
   const signUp = () => {
@@ -192,30 +188,27 @@ const GoToScreen = ({goTo, title}) => {
 }
 
 const SignUp = ({navigation}) => {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [passwordAsterix, setPasswordAsterix] = React.useState("");
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordAsterix, setPasswordAsterix] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordValid, setPasswordValid] = useState(null);
 
   useEffect(() => {
-    console.log("signup email", email);
   }, [email])
 
   useEffect(() => {
     let prevPass = password;
     let newPass = prevPass.replace(/./g, "*");
     setPasswordAsterix(newPass);
-    console.log("SignUP password", password);
   }, [password])
 
   useEffect(() => {
-    console.log("signup passwordAsterix", passwordAsterix);
   }, [passwordAsterix])
 
 
   const signUp = () => {
-    //console.log("signUp()");
-    signUpValidation(password);
+    const valid = signUpValidation(password);
   }
 
   const changePass = ({nativeEvent: {key: keyValue}}) => {
@@ -232,7 +225,6 @@ const SignUp = ({navigation}) => {
   }
 
   const login = () => {
-    console.log("login()");
     navigation.navigate("Login");
   }
 
