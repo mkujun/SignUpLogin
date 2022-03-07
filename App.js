@@ -50,6 +50,27 @@ const Password = ({password, setPassword, passwordAsterix, setPasswordAsterix, s
   )
 }
 
+const RememberMe = () => {
+  const [toggle, setToggle] = useState(true);
+
+  const True = () => {
+    return <MaterialCommunityIcons name="checkbox-marked-outline" size={25}/>
+  }
+
+  const False = () => {
+    return <MaterialCommunityIcons name="checkbox-blank-outline" size={25}/>
+  }
+
+  return (
+    <View style={{flexDirection: 'row', padding: 20}}>
+      <TouchableOpacity onPress={() => {setToggle(!toggle)}}>
+      {toggle ? <True/> : <False/>}
+      </TouchableOpacity>
+      <Text style={{color: 'black', fontSize:16}}>Remember me?</Text>
+    </View>
+  )
+}
+
 const Login = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = React.useState("");
@@ -102,6 +123,7 @@ const Login = ({navigation}) => {
         showPassword={showPassword} setShowPassword={setShowPassword}
         changePass={changePass}
       />
+      <RememberMe />
       <PinkButton buttonAction={login} title={"LOGIN"}/>
       <SocialMedia />
       <View style={{flexDirection: 'row', justifyContent: 'center', padding: 10}}>
