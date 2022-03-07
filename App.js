@@ -17,6 +17,18 @@ const App = () => {
 
 const Stack = createNativeStackNavigator();
 
+const signUpValidation = (input) => {
+  // Minimum eight characters, at least one letter, one number and one special character
+  const re = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/g);
+
+  if (re.test(input)) {
+    console.log("prosla validacija");
+  }
+  else {
+    console.log("regex nije dobar");
+  }
+}
+
 const Email = ({email, setEmail}) => {
   return (
     <>
@@ -202,7 +214,8 @@ const SignUp = ({navigation}) => {
 
 
   const signUp = () => {
-    console.log("signUp()");
+    //console.log("signUp()");
+    signUpValidation(password);
   }
 
   const changePass = ({nativeEvent: {key: keyValue}}) => {
