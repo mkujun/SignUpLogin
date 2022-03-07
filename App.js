@@ -54,7 +54,7 @@ const RememberMe = () => {
   const [toggle, setToggle] = useState(true);
 
   const True = () => {
-    return <MaterialCommunityIcons name="checkbox-marked-outline" size={25}/>
+    return <MaterialCommunityIcons name="checkbox-marked-outline" size={25} color="#ee5684"/>
   }
 
   const False = () => {
