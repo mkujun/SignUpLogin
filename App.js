@@ -1,16 +1,34 @@
 import React from 'react';
 import { View, TouchableOpacity, SafeAreaView, StyleSheet, Text, TextInput } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const App = () => {
   return (
-    <SafeAreaView>
-      <SignUp />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="SignUp" component={SignUp}/>
+        <Stack.Screen name="Login" component={Login}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
-const SignUp = () => {
+const Login = ({navigation}) => {
+  return (
+    <View style={{flex: 1}}>
+      <TouchableOpacity onPress={() => {navigation.pop()}}>
+        <Text>go back</Text>
+      </TouchableOpacity>
+      <Text>Login screen</Text>
+    </View>
+  )
+}
+
+const Stack = createNativeStackNavigator();
+
+const SignUp = ({navigation}) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [passwordAsterix, setPasswordAsterix] = React.useState("");
@@ -46,6 +64,7 @@ const SignUp = () => {
 
   const login = () => {
     console.log("login()");
+    navigation.navigate("Login");
   }
 
   return (
