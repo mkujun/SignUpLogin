@@ -15,6 +15,8 @@ const App = () => {
   )
 }
 
+const Stack = createNativeStackNavigator();
+
 const Email = ({email, setEmail}) => {
   return (
     <>
@@ -28,12 +30,59 @@ const Email = ({email, setEmail}) => {
   )
 }
 
+const Password = ({password, setPassword, passwordAsterix, setPasswordAsterix, showPassword, setShowPassword, changePass}) => {
+  return (
+    <>
+    <Text style={{paddingHorizontal: 20, marginBottom: 5, marginTop: 20}}>Password</Text>
+    <View style={styles.passwordInputRow}>
+      <TextInput
+        style={styles.passwordInput}
+        autoCorrect={false}
+        value={password}
+        onKeyPress={changePass}
+        value={showPassword ? password : passwordAsterix}
+      />
+      <TouchableOpacity style={{alignSelf: 'center', padding:10}} onPress={() => { setShowPassword(!showPassword)}}>
+        <MaterialCommunityIcons name={"eye-off"} size={20}/>
+      </TouchableOpacity>
+    </View>
+    </>
+  )
+}
+
 const Login = ({navigation}) => {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = React.useState("");
+  const [passwordAsterix, setPasswordAsterix] = React.useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  useEffect(() => {
+    let prevPass = password;
+    let newPass = prevPass.replace(/./g, "*");
+    setPasswordAsterix(newPass);
+    console.log("SignUP password", password);
+  }, [password])
 
   useEffect(() => {
     console.log("login email change", email);
   }, [email])
+
+  useEffect(() => {
+    console.log("login password change", password);
+  }, [password])
+
+  const changePass = ({nativeEvent: {key: keyValue}}) => {
+    let temp;
+
+    if (keyValue === "Backspace") {
+      temp = password.slice(0,-1);
+    }
+    else {
+      temp = password + keyValue;
+    }
+
+    setPassword(temp);
+  }
 
   return (
     <View style={{flex: 1}}>
@@ -42,11 +91,14 @@ const Login = ({navigation}) => {
       </TouchableOpacity>
       <Text>Login screen</Text>
       <Email email={email} setEmail={setEmail}/>
+      <Password password={password} setPassword={setPassword}
+        passwordAsterix={passwordAsterix} setPasswordAsterix={setPasswordAsterix}
+        showPassword={showPassword} setShowPassword={setShowPassword}
+        changePass={changePass}
+      />
     </View>
   )
 }
-
-const Stack = createNativeStackNavigator();
 
 const SignUp = ({navigation}) => {
   const [email, setEmail] = React.useState("");
@@ -58,14 +110,15 @@ const SignUp = ({navigation}) => {
     console.log("signup email", email);
   }, [email])
 
-  React.useEffect(() => {
+  useEffect(() => {
     let prevPass = password;
     let newPass = prevPass.replace(/./g, "*");
     setPasswordAsterix(newPass);
+    console.log("SignUP password", password);
   }, [password])
 
-  React.useEffect(() => {
-    console.log("passwordAsterix", passwordAsterix);
+  useEffect(() => {
+    console.log("signup passwordAsterix", passwordAsterix);
   }, [passwordAsterix])
 
 
@@ -96,19 +149,11 @@ const SignUp = ({navigation}) => {
     <SafeAreaView>
       <Text style={{padding: 20, marginBottom: 10, fontSize: 18, fontWeight: 'bold', color: 'black'}}>SIGN UP</Text>
       <Email email={email} setEmail={setEmail}/>
-      <Text style={{paddingHorizontal: 20, marginBottom: 5, marginTop: 20}}>Password</Text>
-      <View style={styles.passwordInputRow}>
-        <TextInput
-          style={styles.passwordInput}
-          autoCorrect={false}
-          value={password}
-          onKeyPress={changePass}
-          value={showPassword ? password : passwordAsterix}
-        />
-        <TouchableOpacity style={{alignSelf: 'center', padding:10}} onPress={() => { setShowPassword(!showPassword)}}>
-          <MaterialCommunityIcons name={"eye-off"} size={20}/>
-        </TouchableOpacity>
-      </View>
+      <Password password={password} setPassword={setPassword}
+        passwordAsterix={passwordAsterix} setPasswordAsterix={setPasswordAsterix}
+        showPassword={showPassword} setShowPassword={setShowPassword}
+        changePass={changePass}
+      />
       <TouchableOpacity style={styles.signUpButton} onPress={() => {signUp()}}>
         <Text style={styles.signUpButtonText}>SIGN UP</Text>
       </TouchableOpacity>
