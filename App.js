@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, SafeAreaView, StyleSheet, Text, TextInput } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { NavigationContainer } from '@react-navigation/native';
@@ -15,13 +15,33 @@ const App = () => {
   )
 }
 
+const Email = ({email, setEmail}) => {
+  return (
+    <>
+    <Text style={{paddingHorizontal: 20, marginBottom: 5}}>Email</Text>
+    <TextInput
+      style={styles.emailInput}
+      onChangeText={setEmail}
+      value={email}
+    />
+    </>
+  )
+}
+
 const Login = ({navigation}) => {
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    console.log("login email change", email);
+  }, [email])
+
   return (
     <View style={{flex: 1}}>
       <TouchableOpacity onPress={() => {navigation.pop()}}>
         <Text>go back</Text>
       </TouchableOpacity>
       <Text>Login screen</Text>
+      <Email email={email} setEmail={setEmail}/>
     </View>
   )
 }
@@ -33,6 +53,10 @@ const SignUp = ({navigation}) => {
   const [password, setPassword] = React.useState("");
   const [passwordAsterix, setPasswordAsterix] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
+
+  useEffect(() => {
+    console.log("signup email", email);
+  }, [email])
 
   React.useEffect(() => {
     let prevPass = password;
@@ -67,15 +91,11 @@ const SignUp = ({navigation}) => {
     navigation.navigate("Login");
   }
 
+
   return (
     <SafeAreaView>
       <Text style={{padding: 20, marginBottom: 10, fontSize: 18, fontWeight: 'bold', color: 'black'}}>SIGN UP</Text>
-      <Text style={{paddingHorizontal: 20, marginBottom: 5}}>Email</Text>
-      <TextInput
-        style={styles.emailInput}
-        onChangeText={setEmail}
-        value={email}
-      />
+      <Email email={email} setEmail={setEmail}/>
       <Text style={{paddingHorizontal: 20, marginBottom: 5, marginTop: 20}}>Password</Text>
       <View style={styles.passwordInputRow}>
         <TextInput
