@@ -88,6 +88,10 @@ const Login = ({navigation}) => {
     console.log("login()");
   }
 
+  const signUp = () => {
+    navigation.pop();
+  }
+
   return (
     <>
     <Text style={{padding: 20, marginBottom: 10, fontSize: 18, fontWeight: 'bold', color: 'black'}}>LOGIN</Text>
@@ -100,6 +104,10 @@ const Login = ({navigation}) => {
       />
       <PinkButton buttonAction={login} title={"LOGIN"}/>
       <SocialMedia />
+      <View style={{flexDirection: 'row', justifyContent: 'center', padding: 10}}>
+        <Text>Need an account?</Text>
+        <GoToScreen goTo={signUp} title={"SIGN UP"} />
+      </View>
     </View>
     </>
   )
@@ -129,6 +137,14 @@ const SocialMedia = () => {
       <MaterialCommunityIcons name={"linkedin"} size={25} style={{padding: 5}}color={"blue"}/>
     </View>
     </>
+  )
+}
+
+const GoToScreen = ({goTo, title}) => {
+  return (
+    <TouchableOpacity onPress={goTo}>
+      <Text style={{borderBottomWidth: 1, marginLeft: 5}}>{title}</Text>
+    </TouchableOpacity>
   )
 }
 
@@ -176,7 +192,6 @@ const SignUp = ({navigation}) => {
     navigation.navigate("Login");
   }
 
-
   return (
     <SafeAreaView>
       <Text style={{padding: 20, marginBottom: 10, fontSize: 18, fontWeight: 'bold', color: 'black'}}>SIGN UP</Text>
@@ -187,19 +202,15 @@ const SignUp = ({navigation}) => {
         changePass={changePass}
       />
       <PinkButton buttonAction={signUp} title={"SIGN UP"}/>
-
       <SocialMedia />
-
       <View style={{flexDirection: 'row', justifyContent: 'center', padding: 10}}>
         <Text>Already a user?</Text>
-        <TouchableOpacity onPress={() => login()}>
-          <Text style={{borderBottomWidth: 1, marginLeft: 5}}>LOGIN</Text>
-        </TouchableOpacity>
+        <GoToScreen goTo={login} title={"LOGIN"} />
       </View>
-
     </SafeAreaView>
   )
 }
+
 
 const styles = StyleSheet.create({
   emailInput: {
