@@ -125,6 +125,7 @@ const Login = ({navigation}) => {
       />
       <RememberMe />
       <PinkButton buttonAction={login} title={"LOGIN"}/>
+      <ForgotPassword />
       <SocialMedia />
       <View style={{flexDirection: 'row', justifyContent: 'center', padding: 10}}>
         <Text>Need an account?</Text>
@@ -132,6 +133,14 @@ const Login = ({navigation}) => {
       </View>
     </View>
     </>
+  )
+}
+
+const ForgotPassword = () => {
+  return (
+    <View style={{alignItems: 'flex-end', paddingRight: 20, paddingBottom: 20}}>
+      <Text>Forgot Password?</Text>
+    </View>
   )
 }
 
