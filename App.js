@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, SafeAreaView, StyleSheet, Text, TextInput } from 'react-native';
+import { View, TouchableOpacity, SafeAreaView, StyleSheet, Text, TextInput, Dimensions } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -186,6 +186,26 @@ const GoToScreen = ({goTo, title}) => {
   )
 }
 
+const Number = ({title}) => {
+  return (
+    <View style={styles.circle}>
+      <Text style={{color: 'white', fontWeight: 'bold'}}>{title}</Text>
+    </View>
+  )
+}
+
+const NumberSelector = () => {
+  return (
+    <View style={styles.numbersRow}>
+      <Number title={"1"} />
+      <View style={styles.circleDelimiter}/>
+      <Number title={"2"} />
+      <View style={styles.circleDelimiter}/>
+      <Number title={"3"} />
+    </View>
+  )
+}
+
 const SignUp = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -222,6 +242,7 @@ const SignUp = ({navigation}) => {
   return (
     <SafeAreaView>
       <Text style={{padding: 20, marginBottom: 10, fontSize: 18, fontWeight: 'bold', color: 'black'}}>SIGN UP</Text>
+      <NumberSelector />
       <Email email={email} setEmail={setEmail}/>
       <Password password={password} setPassword={setPassword}
         passwordAsterix={passwordAsterix} setPasswordAsterix={setPasswordAsterix}
@@ -242,8 +263,28 @@ const SignUp = ({navigation}) => {
   )
 }
 
-
 const styles = StyleSheet.create({
+  circle: {
+    borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
+    width: Dimensions.get('window').width * 0.08,
+    height: Dimensions.get('window').width * 0.08,
+    backgroundColor: '#ee5684',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  circleDelimiter: {
+    flex: 1, 
+    borderBottomColor: '#ee5684', 
+    borderBottomWidth: 0.5, 
+    marginHorizontal: 10,
+    marginBottom: 15
+  },
+  numbersRow: {
+    flexDirection: 'row', 
+    marginHorizontal: 20,
+    paddingVertical: 10, 
+    marginBottom: 10
+  },
   emailInput: {
     paddingHorizontal: 15,
     borderRadius: 10,
