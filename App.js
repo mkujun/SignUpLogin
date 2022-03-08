@@ -192,7 +192,7 @@ const SignUp = ({navigation}) => {
   const [password, setPassword] = useState("");
   const [passwordAsterix, setPasswordAsterix] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [passwordValid, setPasswordValid] = useState(null);
+  const [passwordValid, setPasswordValid] = useState(true);
 
   useEffect(() => {
   }, [email])
@@ -201,6 +201,12 @@ const SignUp = ({navigation}) => {
     let prevPass = password;
     let newPass = prevPass.replace(/./g, "*");
     setPasswordAsterix(newPass);
+
+    const valid = signUpValidation(password);
+
+    if (password.length > 0) {
+      valid ? setPasswordValid(true) : setPasswordValid(false);
+    }
   }, [password])
 
   useEffect(() => {
@@ -208,7 +214,6 @@ const SignUp = ({navigation}) => {
 
 
   const signUp = () => {
-    const valid = signUpValidation(password);
   }
 
   const changePass = ({nativeEvent: {key: keyValue}}) => {
@@ -237,6 +242,11 @@ const SignUp = ({navigation}) => {
         showPassword={showPassword} setShowPassword={setShowPassword}
         changePass={changePass}
       />
+      <View style={{alignItems: 'center', paddingHorizontal: 20, paddingTop: 10}}>
+        {passwordValid === true ? <Text style={{color: 'black'}}>Must be 8 or more characters and contain at least 1 number and 1 special character</Text>
+        : <Text style={{color: 'red'}}>Must be 8 or more characters and contain at least 1 number and 1 special character</Text>
+        }
+      </View>
       <PinkButton buttonAction={signUp} title={"SIGN UP"}/>
       <SocialMedia />
       <View style={{flexDirection: 'row', justifyContent: 'center', padding: 10}}>
