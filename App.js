@@ -146,9 +146,9 @@ const Login = ({navigation}) => {
 
 const ForgotPassword = () => {
   return (
-    <View style={{alignItems: 'flex-end', paddingRight: 20, paddingBottom: 20}}>
+    <TouchableOpacity style={{alignItems: 'flex-end', paddingRight: 20, paddingBottom: 20}}>
       <Text>Forgot Password?</Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 
