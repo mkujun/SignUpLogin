@@ -42,7 +42,20 @@ const Email = ({email, setEmail}) => {
   )
 }
 
-const Password = ({password, setPassword, passwordAsterix, setPasswordAsterix, showPassword, setShowPassword, changePass}) => {
+const Password = ({password, setPassword, passwordAsterix, setPasswordAsterix, showPassword, setShowPassword}) => {
+  const changePass = ({nativeEvent: {key: keyValue}}) => {
+    let temp;
+
+    if (keyValue === "Backspace") {
+      temp = password.slice(0,-1);
+    }
+    else {
+      temp = password + keyValue;
+    }
+
+    setPassword(temp);
+  }
+
   return (
     <>
     <Text style={{paddingHorizontal: 20, marginBottom: 5, marginTop: 20}}>Password</Text>
@@ -101,19 +114,6 @@ const Login = ({navigation}) => {
   useEffect(() => {
   }, [password])
 
-  const changePass = ({nativeEvent: {key: keyValue}}) => {
-    let temp;
-
-    if (keyValue === "Backspace") {
-      temp = password.slice(0,-1);
-    }
-    else {
-      temp = password + keyValue;
-    }
-
-    setPassword(temp);
-  }
-
   const login = () => {
   }
 
@@ -129,7 +129,6 @@ const Login = ({navigation}) => {
       <Password password={password} setPassword={setPassword}
         passwordAsterix={passwordAsterix} setPasswordAsterix={setPasswordAsterix}
         showPassword={showPassword} setShowPassword={setShowPassword}
-        changePass={changePass}
       />
       <RememberMe />
       <PinkButton buttonAction={login} title={"LOGIN"}/>
@@ -216,19 +215,6 @@ const SignUp = ({navigation}) => {
   const signUp = () => {
   }
 
-  const changePass = ({nativeEvent: {key: keyValue}}) => {
-    let temp;
-
-    if (keyValue === "Backspace") {
-      temp = password.slice(0,-1);
-    }
-    else {
-      temp = password + keyValue;
-    }
-
-    setPassword(temp);
-  }
-
   const login = () => {
     navigation.navigate("Login");
   }
@@ -240,7 +226,6 @@ const SignUp = ({navigation}) => {
       <Password password={password} setPassword={setPassword}
         passwordAsterix={passwordAsterix} setPasswordAsterix={setPasswordAsterix}
         showPassword={showPassword} setShowPassword={setShowPassword}
-        changePass={changePass}
       />
       <View style={{alignItems: 'center', paddingHorizontal: 20, paddingTop: 10}}>
         {passwordValid === true ? <Text style={{color: 'black'}}>Must be 8 or more characters and contain at least 1 number and 1 special character</Text>
