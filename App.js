@@ -27,7 +27,7 @@ const signUpValidation = (input) => {
 const FieldInput = ({title, val, setVal}) => {
   return (
     <>
-    <Text style={{paddingHorizontal: 20, marginBottom: 5}}>{title}</Text>
+    <Text style={{paddingHorizontal: 20, marginBottom: 5, marginTop: 10}}>{title}</Text>
     <TextInput
       style={styles.fieldInput}
       onChangeText={setVal}
@@ -53,7 +53,7 @@ const Password = ({password, setPassword, passwordAsterix, setPasswordAsterix, s
 
   return (
     <>
-    <Text style={{paddingHorizontal: 20, marginBottom: 5, marginTop: 20}}>Password</Text>
+    <Text style={{paddingHorizontal: 20, marginBottom: 5, marginTop: 10}}>Password</Text>
     <View style={styles.passwordInputRow}>
       <TextInput
         style={styles.passwordInput}
