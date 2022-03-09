@@ -103,12 +103,6 @@ const Login = ({navigation}) => {
     setPasswordAsterix(newPass);
   }, [password])
 
-  useEffect(() => {
-  }, [email])
-
-  useEffect(() => {
-  }, [password])
-
   const login = () => {
   }
 
@@ -261,9 +255,6 @@ const SignUp = ({navigation}) => {
   const [yearsOfExperience, setYearsOfExperience] = useState("");
 
   useEffect(() => {
-  }, [email])
-
-  useEffect(() => {
     let prevPass = password;
     let newPass = prevPass.replace(/./g, "*");
     setPasswordAsterix(newPass);
@@ -274,9 +265,6 @@ const SignUp = ({navigation}) => {
       valid ? setPasswordValid(true) : setPasswordValid(false);
     }
   }, [password])
-
-  useEffect(() => {
-  }, [passwordAsterix])
 
 
   const signUp = () => {
