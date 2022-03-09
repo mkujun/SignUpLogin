@@ -310,7 +310,7 @@ const SignUp = ({navigation}) => {
     if (page === 2 || page === 3) {
       return (
       <TouchableOpacity onPress={back}>
-        <Text style={{borderBottomWidth: 1, alignSelf: 'center', marginBottom: 20}}>{"back"}</Text>
+        <Text style={{borderBottomWidth: 1, alignSelf: 'center', marginBottom: 20, color: '#ee5684', borderBottomColor: '#ee5684'}}>{"Back"}</Text>
       </TouchableOpacity>
       )
     }
