@@ -21,12 +21,7 @@ const signUpValidation = (input) => {
   // Minimum eight characters, at least one letter, one number and one special character
   const re = new RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/g);
 
-  if (re.test(input)) {
-    return true;
-  }
-  else {
-    return false;
-  }
+  return re.test(input) ? true : false;
 }
 
 const FieldInput = ({title, val, setVal}) => {
