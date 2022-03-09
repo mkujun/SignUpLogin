@@ -103,8 +103,7 @@ const Login = ({navigation}) => {
     setPasswordAsterix(newPass);
   }, [password])
 
-  const login = () => {
-  }
+  const login = () => {}
 
   const signUp = () => {
     navigation.pop();
@@ -141,12 +140,7 @@ const ForgotPassword = () => {
 }
 
 const PinkButton = ({buttonAction, title, page}) => {
-  if (page === 3) {
-    title = "SIGN UP"
-  }
-  else {
-    title = "NEXT"
-  }
+  title = page === 3 ? "SIGN UP" : "NEXT"
 
   return (
     <TouchableOpacity style={styles.signUpButton} onPress={buttonAction}>
@@ -184,6 +178,7 @@ const GoToScreen = ({goTo, title}) => {
 
 const Number = ({title, page}) => {
   let numberColor = page == title ? '#ee5684' : 'gray';
+
   return (
     <View style={[styles.circle, {backgroundColor: numberColor}]}>
       <Text style={{color: 'white', fontWeight: 'bold'}}>{title}</Text>
@@ -315,6 +310,8 @@ const SignUp = ({navigation}) => {
         yearsOfExperience={yearsOfExperience} setYearsOfExperience={setYearsOfExperience}
         education={education} setEducation={setEducation}
         organization={organization} setOrganization={setOrganization}
+        contact={contact} setContact={setContact}
+        location={location} setLocation={setLocation}
         jobTitle={jobTitle} setJobTitle={setJobTitle}
       />
       <PinkButton buttonAction={signUp} title={"NEXT"} page={page}/>
