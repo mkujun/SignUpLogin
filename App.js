@@ -42,6 +42,31 @@ const Email = ({email, setEmail}) => {
   )
 }
 
+const Contact = ({contact, setContact}) => {
+  return (
+    <>
+    <Text style={{paddingHorizontal: 20, marginBottom: 5}}>Contact</Text>
+    <TextInput
+      style={styles.emailInput}
+      onChangeText={setContact}
+      value={contact}
+    />
+    </>
+  )
+}
+const Location = ({location, setLocation}) => {
+  return (
+    <>
+    <Text style={{paddingHorizontal: 20, marginBottom: 5}}>Location</Text>
+    <TextInput
+      style={styles.emailInput}
+      onChangeText={setLocation}
+      value={location}
+    />
+    </>
+  )
+}
+
 const Password = ({password, setPassword, passwordAsterix, setPasswordAsterix, showPassword, setShowPassword}) => {
   const changePass = ({nativeEvent: {key: keyValue}}) => {
     let temp;
@@ -214,6 +239,33 @@ const NumberSelector = ({page}) => {
   )
 }
 
+const RenderPage = ({page, email, setEmail, passwordAsterix, setPasswordAsterix, showPassword, setShowPassword, password, setPassword, passwordValid, setPasswordValid}) => {
+  if (page == 1) {
+    return (
+      <>
+      <Email email={email} setEmail={setEmail}/>
+      <Password password={password} setPassword={setPassword}
+        passwordAsterix={passwordAsterix} setPasswordAsterix={setPasswordAsterix}
+        showPassword={showPassword} setShowPassword={setShowPassword}
+      />
+      <View style={{alignItems: 'center', paddingHorizontal: 20, paddingTop: 10}}>
+        {passwordValid === true ? <Text style={{color: 'black'}}>Must be 8 or more characters and contain at least 1 number and 1 special character</Text>
+        : <Text style={{color: 'red'}}>Must be 8 or more characters and contain at least 1 number and 1 special character</Text>
+        }
+      </View>
+      </>
+    )
+  }
+  else if (page == 2) {
+    return (
+      <>
+        <Contact />
+        <Location />
+      </>
+    )
+  }
+}
+
 const SignUp = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -221,6 +273,8 @@ const SignUp = ({navigation}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordValid, setPasswordValid] = useState(true);
   const [page, setPage] = useState(1);
+  const [contact, setContact] = useState("");
+  const [location, setLocation] = useState("");
 
   useEffect(() => {
   }, [email])
@@ -280,20 +334,15 @@ const SignUp = ({navigation}) => {
     <SafeAreaView>
       <Text style={{padding: 20, marginBottom: 10, fontSize: 18, fontWeight: 'bold', color: 'black'}}>SIGN UP</Text>
       <NumberSelector page={page}/>
-      <Email email={email} setEmail={setEmail}/>
-      <Password password={password} setPassword={setPassword}
+      <RenderPage 
+        page={page} email={email} setEmail={setEmail}
         passwordAsterix={passwordAsterix} setPasswordAsterix={setPasswordAsterix}
         showPassword={showPassword} setShowPassword={setShowPassword}
+        password={password} setPassword={setPassword}
+        passwordValid={passwordValid} setPasswordValid={setPasswordValid}
       />
-      <View style={{alignItems: 'center', paddingHorizontal: 20, paddingTop: 10}}>
-        {passwordValid === true ? <Text style={{color: 'black'}}>Must be 8 or more characters and contain at least 1 number and 1 special character</Text>
-        : <Text style={{color: 'red'}}>Must be 8 or more characters and contain at least 1 number and 1 special character</Text>
-        }
-      </View>
-
       <PinkButton buttonAction={signUp} title={"NEXT"} page={page}/>
       <NextPage />
-
       <SocialMedia />
       <View style={{flexDirection: 'row', justifyContent: 'center', padding: 10}}>
         <Text>Already a user?</Text>
