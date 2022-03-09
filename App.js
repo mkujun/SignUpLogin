@@ -29,39 +29,14 @@ const signUpValidation = (input) => {
   }
 }
 
-const Email = ({email, setEmail}) => {
+const FieldInput = ({title, val, setVal}) => {
   return (
     <>
-    <Text style={{paddingHorizontal: 20, marginBottom: 5}}>Email</Text>
+    <Text style={{paddingHorizontal: 20, marginBottom: 5}}>{title}</Text>
     <TextInput
       style={styles.emailInput}
-      onChangeText={setEmail}
-      value={email}
-    />
-    </>
-  )
-}
-
-const Contact = ({contact, setContact}) => {
-  return (
-    <>
-    <Text style={{paddingHorizontal: 20, marginBottom: 5}}>Contact</Text>
-    <TextInput
-      style={styles.emailInput}
-      onChangeText={setContact}
-      value={contact}
-    />
-    </>
-  )
-}
-const Location = ({location, setLocation}) => {
-  return (
-    <>
-    <Text style={{paddingHorizontal: 20, marginBottom: 5}}>Location</Text>
-    <TextInput
-      style={styles.emailInput}
-      onChangeText={setLocation}
-      value={location}
+      onChangeText={setVal}
+      value={val}
     />
     </>
   )
@@ -150,7 +125,7 @@ const Login = ({navigation}) => {
     <>
     <Text style={{padding: 20, marginBottom: 10, fontSize: 18, fontWeight: 'bold', color: 'black'}}>LOGIN</Text>
     <View style={{flex: 1}}>
-      <Email email={email} setEmail={setEmail}/>
+      <FieldInput title="Email" val={email} setVal={setEmail} />
       <Password password={password} setPassword={setPassword}
         passwordAsterix={passwordAsterix} setPasswordAsterix={setPasswordAsterix}
         showPassword={showPassword} setShowPassword={setShowPassword}
@@ -239,11 +214,11 @@ const NumberSelector = ({page}) => {
   )
 }
 
-const RenderPage = ({page, email, setEmail, passwordAsterix, setPasswordAsterix, showPassword, setShowPassword, password, setPassword, passwordValid, setPasswordValid}) => {
+const RenderPage = ({contact, setContact, location, setLocation, page, email, setEmail, passwordAsterix, setPasswordAsterix, showPassword, setShowPassword, password, setPassword, passwordValid, setPasswordValid}) => {
   if (page == 1) {
     return (
       <>
-      <Email email={email} setEmail={setEmail}/>
+      <FieldInput title="Email" val={email} setVal={setEmail} />
       <Password password={password} setPassword={setPassword}
         passwordAsterix={passwordAsterix} setPasswordAsterix={setPasswordAsterix}
         showPassword={showPassword} setShowPassword={setShowPassword}
@@ -259,8 +234,8 @@ const RenderPage = ({page, email, setEmail, passwordAsterix, setPasswordAsterix,
   else if (page == 2) {
     return (
       <>
-        <Contact />
-        <Location />
+      <FieldInput title="Contact" val={contact} setVal={setContact} />
+      <FieldInput title="Location" val={location} setVal={setLocation} />
       </>
     )
   }
