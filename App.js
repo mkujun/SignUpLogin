@@ -214,7 +214,7 @@ const NumberSelector = ({page}) => {
   )
 }
 
-const RenderPage = ({contact, setContact, location, setLocation, page, email, setEmail, passwordAsterix, setPasswordAsterix, showPassword, setShowPassword, password, setPassword, passwordValid, setPasswordValid}) => {
+const RenderPage = ({contact, setContact, location, setLocation, page, email, setEmail, passwordAsterix, setPasswordAsterix, showPassword, setShowPassword, password, setPassword, passwordValid, setPasswordValid, education, setEducation, jobTitle, setJobTitle, organization, setOrganization, yearsOfExperience, setYearsOfExperience}) => {
   if (page == 1) {
     return (
       <>
@@ -239,6 +239,16 @@ const RenderPage = ({contact, setContact, location, setLocation, page, email, se
       </>
     )
   }
+  else if (page == 3) {
+    return (
+      <>
+      <FieldInput title="Education" val={education} setVal={setEducation} />
+      <FieldInput title="Job Title" val={jobTitle} setVal={setJobTitle} />
+      <FieldInput title="Organization" val={organization} setVal={setOrganization} />
+      <FieldInput title="Years of Experience" val={yearsOfExperience} setVal={setYearsOfExperience} />
+      </>
+    )
+  }
 }
 
 const SignUp = ({navigation}) => {
@@ -250,6 +260,10 @@ const SignUp = ({navigation}) => {
   const [page, setPage] = useState(1);
   const [contact, setContact] = useState("");
   const [location, setLocation] = useState("");
+  const [education, setEducation] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+  const [organization, setOrganization] = useState("");
+  const [yearsOfExperience, setYearsOfExperience] = useState("");
 
   useEffect(() => {
   }, [email])
@@ -315,6 +329,10 @@ const SignUp = ({navigation}) => {
         showPassword={showPassword} setShowPassword={setShowPassword}
         password={password} setPassword={setPassword}
         passwordValid={passwordValid} setPasswordValid={setPasswordValid}
+        yearsOfExperience={yearsOfExperience} setYearsOfExperience={setYearsOfExperience}
+        education={education} setEducation={setEducation}
+        organization={organization} setOrganization={setOrganization}
+        jobTitle={jobTitle} setJobTitle={setJobTitle}
       />
       <PinkButton buttonAction={signUp} title={"NEXT"} page={page}/>
       <NextPage />
