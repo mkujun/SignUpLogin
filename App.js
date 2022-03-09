@@ -151,7 +151,14 @@ const ForgotPassword = () => {
   )
 }
 
-const PinkButton = ({buttonAction, title}) => {
+const PinkButton = ({buttonAction, title, page}) => {
+  if (page === 3) {
+    title = "SIGN UP"
+  }
+  else {
+    title = "NEXT"
+  }
+
   return (
     <TouchableOpacity style={styles.signUpButton} onPress={buttonAction}>
       <Text style={styles.signUpButtonText}>{title}</Text>
@@ -256,6 +263,19 @@ const SignUp = ({navigation}) => {
     navigation.navigate("Login");
   }
 
+  const NextPage = () => {
+    if (page === 2 || page === 3) {
+      return (
+      <TouchableOpacity onPress={back}>
+        <Text style={{borderBottomWidth: 1, alignSelf: 'center', marginBottom: 20}}>{"back"}</Text>
+      </TouchableOpacity>
+      )
+    }
+    else {
+      return null;
+    }
+  }
+
   return (
     <SafeAreaView>
       <Text style={{padding: 20, marginBottom: 10, fontSize: 18, fontWeight: 'bold', color: 'black'}}>SIGN UP</Text>
@@ -270,11 +290,9 @@ const SignUp = ({navigation}) => {
         : <Text style={{color: 'red'}}>Must be 8 or more characters and contain at least 1 number and 1 special character</Text>
         }
       </View>
-      <PinkButton buttonAction={signUp} title={"NEXT"}/>
 
-      <TouchableOpacity onPress={back}>
-        <Text style={{borderBottomWidth: 1, alignSelf: 'center', marginBottom: 20}}>{"back"}</Text>
-      </TouchableOpacity>
+      <PinkButton buttonAction={signUp} title={"NEXT"} page={page}/>
+      <NextPage />
 
       <SocialMedia />
       <View style={{flexDirection: 'row', justifyContent: 'center', padding: 10}}>
