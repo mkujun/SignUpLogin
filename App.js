@@ -29,7 +29,7 @@ const FieldInput = ({title, val, setVal}) => {
     <>
     <Text style={{paddingHorizontal: 20, marginBottom: 5}}>{title}</Text>
     <TextInput
-      style={styles.emailInput}
+      style={styles.fieldInput}
       onChangeText={setVal}
       value={val}
     />
@@ -346,7 +346,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10, 
     marginBottom: 10
   },
-  emailInput: {
+  fieldInput: {
     paddingHorizontal: 15,
     borderRadius: 10,
     borderColor: 'gray',
