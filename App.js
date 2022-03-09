@@ -186,22 +186,23 @@ const GoToScreen = ({goTo, title}) => {
   )
 }
 
-const Number = ({title}) => {
+const Number = ({title, page}) => {
+  let numberColor = page == title ? '#ee5684' : 'gray';
   return (
-    <View style={styles.circle}>
+    <View style={[styles.circle, {backgroundColor: numberColor}]}>
       <Text style={{color: 'white', fontWeight: 'bold'}}>{title}</Text>
     </View>
   )
 }
 
-const NumberSelector = () => {
+const NumberSelector = ({page}) => {
   return (
     <View style={styles.numbersRow}>
-      <Number title={"1"} />
+      <Number title={"1"} page={page}/>
       <View style={styles.circleDelimiter}/>
-      <Number title={"2"} />
+      <Number title={"2"} page={page}/>
       <View style={styles.circleDelimiter}/>
-      <Number title={"3"} />
+      <Number title={"3"} page={page}/>
     </View>
   )
 }
@@ -212,6 +213,7 @@ const SignUp = ({navigation}) => {
   const [passwordAsterix, setPasswordAsterix] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [passwordValid, setPasswordValid] = useState(true);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
   }, [email])
@@ -233,6 +235,21 @@ const SignUp = ({navigation}) => {
 
 
   const signUp = () => {
+    let currentPage = page;
+    
+    if (currentPage < 3) {
+      currentPage++;
+      setPage(currentPage);
+    }
+  }
+
+  const back = () => {
+    let currentPage = page;
+
+    if (currentPage > 1) {
+      currentPage--;
+      setPage(currentPage);
+    }
   }
 
   const login = () => {
@@ -242,7 +259,7 @@ const SignUp = ({navigation}) => {
   return (
     <SafeAreaView>
       <Text style={{padding: 20, marginBottom: 10, fontSize: 18, fontWeight: 'bold', color: 'black'}}>SIGN UP</Text>
-      <NumberSelector />
+      <NumberSelector page={page}/>
       <Email email={email} setEmail={setEmail}/>
       <Password password={password} setPassword={setPassword}
         passwordAsterix={passwordAsterix} setPasswordAsterix={setPasswordAsterix}
@@ -253,7 +270,12 @@ const SignUp = ({navigation}) => {
         : <Text style={{color: 'red'}}>Must be 8 or more characters and contain at least 1 number and 1 special character</Text>
         }
       </View>
-      <PinkButton buttonAction={signUp} title={"SIGN UP"}/>
+      <PinkButton buttonAction={signUp} title={"NEXT"}/>
+
+      <TouchableOpacity onPress={back}>
+        <Text style={{borderBottomWidth: 1, alignSelf: 'center', marginBottom: 20}}>{"back"}</Text>
+      </TouchableOpacity>
+
       <SocialMedia />
       <View style={{flexDirection: 'row', justifyContent: 'center', padding: 10}}>
         <Text>Already a user?</Text>
@@ -268,7 +290,6 @@ const styles = StyleSheet.create({
     borderRadius: Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
     width: Dimensions.get('window').width * 0.08,
     height: Dimensions.get('window').width * 0.08,
-    backgroundColor: '#ee5684',
     justifyContent: 'center',
     alignItems: 'center'
   },
