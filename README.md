@@ -3,13 +3,13 @@
 - heavily inspired by https://uxplanet.org/12-best-practies-for-sign-up-and-login-page-design-69d6cd045cf article
 
 <img
-  src="/screenshoots/1.jpg"
+  src="/screenshoots/1.png"
   alt=""
   title=""
   style="display: inline-block; margin: 0 auto; max-width: 300px">
 
 <img
-  src="/screenshoots/2.jpg"
+  src="/screenshoots/2.png"
   alt=""
   title=""
   style="display: inline-block; margin: 0 auto; max-width: 300px">
