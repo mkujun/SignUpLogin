@@ -6,10 +6,16 @@
   src="/screenshoots/1.png"
   alt=""
   title=""
-  style="display: inline-block; margin: 0 auto; max-width: 300px">
+  style="display: inline-block; margin: 0 auto; max-width: 300px" max-height: 300px>
 
 <img
   src="/screenshoots/2.png"
   alt=""
   title=""
-  style="display: inline-block; margin: 0 auto; max-width: 300px">
+  style="display: inline-block; margin: 0 auto; max-width: 300px max-height: 300px">
+
+<img
+  src="/screenshoots/3.png"
+  alt=""
+  title=""
+  style="display: inline-block; margin: 0 auto; max-width: 300px max-height: 300px">
